@@ -32,6 +32,7 @@ describe('top-secrets routes', () => {
   });
 
   it('signs in a user', async () => {
+    await request(app).post('/api/v1/users').send(mockUser);
     const res = await request(app).post('/api/v1/users/sessions').send(mockUser);
     expect(res.body).toEqual({
       message: 'Signed in successfully!'
