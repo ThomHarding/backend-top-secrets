@@ -31,12 +31,12 @@ describe('top-secrets routes', () => {
     });
   });
 
-  it('signs in a user', async () => {
+  it('signs in an existing user', async () => {
     await request(app).post('/api/v1/users').send(mockUser);
-    const res = await request(app).post('/api/v1/users/sessions').send(mockUser);
-    expect(res.body).toEqual({
-      message: 'Signed in successfully!'
-    });
+    const res = await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@example.com', password: '12345' });
+    expect(res.status).toEqual(200);
   });
 
   it('signs out a user on DELETE', async () => {
