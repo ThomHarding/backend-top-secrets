@@ -10,7 +10,6 @@ const mockUser = {
   password: '12345',
 };
 
-
 describe('top-secrets routes', () => {
   beforeEach(() => {
     return setup(pool);
@@ -45,4 +44,15 @@ describe('top-secrets routes', () => {
       message: 'Signed out successfully!'
     });
   });
+
+  it('returns a list of secrets', async () => {
+    const res = await request(app).delete('/api/v1/secrets').send(mockUser);
+    // very unconfident this is how you phrase this but this might be close?
+    expect(res.body).toEqual([{
+      title: expect.any(String),
+      description: expect.any(String),
+      created_at: expect.any(String)
+    }]);
+  });
+
 });
