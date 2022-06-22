@@ -46,7 +46,7 @@ describe('top-secrets routes', () => {
   });
 
   it('returns a list of secrets', async () => {
-    const res = await request(app).delete('/api/v1/secrets').send(mockUser);
+    const res = await request(app).get('/api/v1/secrets');
     // very unconfident this is how you phrase this but this might be close?
     expect(res.body).toEqual([{
       title: expect.any(String),
