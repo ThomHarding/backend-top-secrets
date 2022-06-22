@@ -34,7 +34,6 @@ describe('top-secrets routes', () => {
 
   it('signs in a user', async () => {
     const res = await request(app).post('/api/v1/users/sessions').send(mockUser);
-
     expect(res.body).toEqual({
       message: 'Signed in successfully!'
     });
@@ -42,7 +41,6 @@ describe('top-secrets routes', () => {
 
   it('signs out a user on DELETE', async () => {
     const res = await request(app).delete('/api/v1/users/sessions').send(mockUser);
-
     expect(res.body).toEqual({
       message: 'Signed out successfully!'
     });
